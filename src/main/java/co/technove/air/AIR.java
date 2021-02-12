@@ -1,4 +1,4 @@
-package gg.technove.air;
+package co.technove.air;
 
 import java.io.*;
 import java.util.*;

@@ -7,7 +7,7 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-group 'gg.technove'
+group 'co.technove'
 version '1.0-SNAPSHOT'
 
 repositories {

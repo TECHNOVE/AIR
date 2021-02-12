@@ -1,6 +1,6 @@
-package gg.airplane.air;
+package co.technove.air;
 
-import gg.technove.air.AIR;
+import co.technove.air.AIR;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
