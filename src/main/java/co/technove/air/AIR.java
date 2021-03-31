@@ -125,7 +125,7 @@ public class AIR {
                         value = line.trim();
 
                         if (value.equals("]")) {
-                            currentSection.add(listKey, new Value(ValueType.LIST, key, currentList, currentComment));
+                            currentSection.add(listKey, new Value(ValueType.LIST, listKey, currentList, currentComment));
                             currentList = null;
                             listKey = null;
                             continue;
