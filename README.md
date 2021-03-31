@@ -13,6 +13,20 @@ Subset of TOML.
 [_head]
 ```
 
+#### Lists
+
+The only requirement for lists is that each value is on a different line, as well as the ending bracket.
+
+```toml
+[section]
+  list = [
+    "foo"
+    "bar"
+    "hello"
+    "world"
+  ]
+```
+
 #### Sections and Values
 
 ```toml
@@ -64,4 +78,3 @@ This allows users to easily add their own comments and placeholder sections as n
 ## Future Features
 
 - Ability to deprecate sections/values by commenting them
-- Some form of lists, likely to be a single line format
