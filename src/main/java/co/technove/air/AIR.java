@@ -196,7 +196,7 @@ public class AIR {
         if (!this.sections.containsKey(split[0])) {
             throw new IllegalArgumentException("Cannot set comment for section that does not exist.");
         }
-        ManualObject object = this.sections.get(split[0]);
+        ManualObject object = this.sections.computeIfAbsent(split[0], v -> new Section(split[0], null));
         object.comments.clear();
         object.comments.addAll(Arrays.asList(comment));
     }
