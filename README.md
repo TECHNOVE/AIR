@@ -17,7 +17,7 @@ Subset of TOML.
 
 The only requirement for lists is that each value is on a different line, as well as the ending bracket.
 
-```toml
+```shell
 [section]
   list = [
     "foo"
