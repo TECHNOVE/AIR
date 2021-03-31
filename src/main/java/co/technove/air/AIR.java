@@ -193,9 +193,6 @@ public class AIR {
 
     public void setComment(String key, String... comment) {
         String[] split = key.split("\\.", 2);
-        if (!this.sections.containsKey(split[0])) {
-            throw new IllegalArgumentException("Cannot set comment for section that does not exist.");
-        }
         ManualObject object = this.sections.computeIfAbsent(split[0], v -> new Section(split[0], null));
         object.comments.clear();
         object.comments.addAll(Arrays.asList(comment));
