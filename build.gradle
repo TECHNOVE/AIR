@@ -8,7 +8,7 @@ java {
 }
 
 group 'co.technove'
-version '1.0-SNAPSHOT'
+version 'master-SNAPSHOT'
 
 repositories {
     mavenCentral()
