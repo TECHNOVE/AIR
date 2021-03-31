@@ -79,7 +79,7 @@ public abstract class ValueType<T> {
         public String serialize(List<AIR.Value<?>> values) {
             StringBuilder builder = new StringBuilder().append("[\n");
             for (AIR.Value<?> value : values) {
-                builder.append("    ").append(value.serialize()).append("\n");
+                builder.append("    ").append(value.serialize()).append(",\n");
             }
             builder.append("  ]");
             return builder.toString();

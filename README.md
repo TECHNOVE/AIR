@@ -17,13 +17,13 @@ Subset of TOML.
 
 The only requirement for lists is that each value is on a different line, as well as the ending bracket.
 
-```shell
+```toml
 [section]
   list = [
-    "foo"
-    "bar"
-    "hello"
-    "world"
+    "foo",
+    "bar",
+    "hello",
+    "world",
   ]
 ```
 

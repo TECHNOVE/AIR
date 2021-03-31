@@ -102,6 +102,33 @@ public class AIRTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         parser.save(outputStream);
         String out = outputStream.toString(StandardCharsets.UTF_8);
-        Files.writeString(new File("txt").toPath(), out);
+        Assertions.assertEquals(out, "[lists]\n" +
+          "  list1 = [\n" +
+          "    \"foo\",\n" +
+          "    \"bar\",\n" +
+          "    \"hello\",\n" +
+          "    \"world\",\n" +
+          "  ]\n" +
+          "  list2 = [\n" +
+          "    1,\n" +
+          "    2,\n" +
+          "    3,\n" +
+          "    4,\n" +
+          "    5,\n" +
+          "  ]\n" +
+          "  list3 = [\n" +
+          "    true,\n" +
+          "    false,\n" +
+          "    false,\n" +
+          "    true,\n" +
+          "    false,\n" +
+          "  ]\n" +
+          "  list4 = [\n" +
+          "    234.1,\n" +
+          "    -2132.2312313,\n" +
+          "    4334.0,\n" +
+          "    0.0,\n" +
+          "  ]\n" +
+          "\n");
     }
 }

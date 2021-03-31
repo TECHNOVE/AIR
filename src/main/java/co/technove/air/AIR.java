@@ -130,6 +130,10 @@ public class AIR {
                             listKey = null;
                             continue;
                         }
+
+                        if (value.endsWith(",")) {
+                            value = value.substring(0, value.length() - 1);
+                        }
                     }
 
                     boolean found = false;
