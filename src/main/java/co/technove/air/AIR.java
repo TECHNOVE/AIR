@@ -150,14 +150,14 @@ public class AIR {
                             } else {
                                 currentList.add(new Value(valueType, listKey, possible.get(), Collections.emptyList()));
                             }
+                            break;
                         }
                     }
                     if (!found) {
                         throw new IllegalArgumentException("Invalid configuration, unknown type for " + line);
                     }
-                    if (!currentComment.isEmpty()) {
-                        currentComment = new ArrayList<>();
-                    }
+
+                    currentComment = new ArrayList<>();
                 }
             }
         }
