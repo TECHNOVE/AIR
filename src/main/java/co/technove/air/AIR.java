@@ -45,12 +45,15 @@ public class AIR {
     }
 
     static class Value<T> extends ManualObject {
-        public ValueType<T> type;
+        public final ValueType<T> type;
         public T value;
         public Section parent;
 
         private Value(ValueType<T> type, String key, T value, List<String> comments) {
             super(key, comments);
+            if (type == null) {
+                throw new NullPointerException();
+            }
             this.type = type;
             this.value = value;
         }
