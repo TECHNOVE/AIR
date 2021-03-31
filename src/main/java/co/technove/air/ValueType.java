@@ -55,7 +55,7 @@ public abstract class ValueType<T> {
     public static final ValueType<String> STRING = new ValueType<String>("STRING") {
         @Override
         public Optional<String> apply(String str) {
-            if (str.length() > 2 && str.startsWith("\"")) {
+            if (str.length() >= 2 && str.startsWith("\"")) {
                 if (!str.endsWith("\"")) {
                     throw new RuntimeException("Missing ending quote");
                 }
