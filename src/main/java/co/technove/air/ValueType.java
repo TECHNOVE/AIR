@@ -27,7 +27,7 @@ public abstract class ValueType<T> {
     public static final ValueType<Integer> INT = new ValueType<Integer>("INT") {
         @Override
         public Optional<Integer> apply(String str) {
-            if (Character.isDigit(str.charAt(0)) && !str.contains(".")) {
+            if ((((str.charAt(0) == '\u002d' /* - */ || str.charAt(0) == '\u002b' /* + */) && Character.isDigit(str.charAt(1))) || Character.isDigit(str.charAt(0))) && !str.contains(".")) {
                 return Optional.of(Integer.parseInt(str));
             }
             return Optional.empty();
@@ -41,7 +41,7 @@ public abstract class ValueType<T> {
     public static final ValueType<Double> DOUBLE = new ValueType<Double>("DOUBLE") {
         @Override
         public Optional<Double> apply(String str) {
-            if (Character.isDigit(str.charAt(0)) && str.contains(".")) {
+            if ((((str.charAt(0) == '\u002d' /* - */ || str.charAt(0) == '\u002b' /* + */) && Character.isDigit(str.charAt(1))) || Character.isDigit(str.charAt(0))) && str.contains(".")) {
                 return Optional.of(Double.parseDouble(str));
             }
             return Optional.empty();
