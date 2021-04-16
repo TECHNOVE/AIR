@@ -27,6 +27,26 @@ public class AIRTest {
         Assertions.assertEquals(parser.getString("foo.bar2", "nonexistent"), "nonexistent");
     }
 
+	@Test
+	public void numericalParseTest() throws IOException {
+
+		final String contents = "# Hello, World\n" +
+								"[_head]\n" +
+								"\n" +
+								"[foo]\n" +
+								"bar = -1.5\n" +
+								"baz = 76.1\n" +
+								"buq = -53\n" +
+								"qux = 12";
+
+		final AIR parser = new AIR(new ByteArrayInputStream(contents.getBytes(StandardCharsets.UTF_8)));
+		Assertions.assertEquals(parser.getDouble("foo.bar", 0.0), -1.5);
+		Assertions.assertEquals(parser.getDouble("foo.baz", 0.0), 76.1);
+		Assertions.assertEquals(parser.getInt("foo.buq", 0), -53);
+		Assertions.assertEquals(parser.getInt("foo.qux", 0), 12);
+		Assertions.assertEquals(parser.getString("foo.bar2", "nonexistent"), "nonexistent");
+	}
+
     @Test
     public void numericalListParseTest() throws IOException {
         String contents = "[section]\n" +
