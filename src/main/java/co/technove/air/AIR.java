@@ -280,4 +280,19 @@ public class AIR {
         ((Value) object).value = value;
     }
 
+    public void merge(AIR defaults){
+        for (final Map.Entry<String, Section> sections : defaults.sections.entrySet()) { // loop through default values
+            if (!this.sections.containsKey(sections.getKey())) { // missing an entire section, simply copy it over
+                this.sections.put(sections.getKey(), sections.getValue());
+            } else { // section exists, merge with defaults
+				for (final Map.Entry<String, Value<?>> values : sections.getValue().values.entrySet()) {
+					Section current = this.sections.get(sections.getKey());
+					if (!current.values.containsKey(values.getKey())) { // missing an individual value, copy it
+						current.values.put(values.getKey(), values.getValue());
+					}
+				}
+            }
+        }
+    }
+
 }

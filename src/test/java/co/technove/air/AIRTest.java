@@ -30,7 +30,7 @@ public class AIRTest {
 	@Test
 	public void numericalParseTest() throws IOException {
 
-		final String contents = "# Hello, World\n" +
+		String contents = "# Hello, World\n" +
 								"[_head]\n" +
 								"\n" +
 								"[foo]\n" +
@@ -39,7 +39,7 @@ public class AIRTest {
 								"buq = -53\n" +
 								"qux = 12";
 
-		final AIR parser = new AIR(new ByteArrayInputStream(contents.getBytes(StandardCharsets.UTF_8)));
+		AIR parser = new AIR(new ByteArrayInputStream(contents.getBytes(StandardCharsets.UTF_8)));
 		Assertions.assertEquals(parser.getDouble("foo.bar", 0.0), -1.5);
 		Assertions.assertEquals(parser.getDouble("foo.baz", 0.0), 76.1);
 		Assertions.assertEquals(parser.getInt("foo.buq", 0), -53);
@@ -100,7 +100,7 @@ public class AIRTest {
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         parser.save(outputStream);
-        String conf = outputStream.toString(StandardCharsets.UTF_8);
+        String conf = outputStream.toString(StandardCharsets.UTF_8.name());
 
         Assertions.assertEquals("[foo]\n  bar = \"hello\"\n\n", conf);
     }
@@ -121,7 +121,7 @@ public class AIRTest {
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         parser.save(outputStream);
-        String out = outputStream.toString(StandardCharsets.UTF_8);
+        String out = outputStream.toString(StandardCharsets.UTF_8.name());
         Assertions.assertEquals(out, "[lists]\n" +
           "  list1 = [\n" +
           "    \"foo\",\n" +
@@ -151,4 +151,26 @@ public class AIRTest {
           "  ]\n" +
           "\n");
     }
+
+	@Test
+	public void mergeTest() throws IOException {
+		String defaults = "[foo]\n" +
+						  "bar = \"qux\"\n" +
+						  "baz = 15\n" +
+						  "[qaz]\n" +
+						  "bat = false";
+
+		String contents = "[foo]\n" +
+						  "baz = 2\n";
+
+		AIR defaultsParser = new AIR(new ByteArrayInputStream(defaults.getBytes(StandardCharsets.UTF_8)));
+		AIR contentsParser = new AIR(new ByteArrayInputStream(contents.getBytes(StandardCharsets.UTF_8)));
+
+		contentsParser.merge(defaultsParser);
+
+		Assertions.assertEquals(contentsParser.getString("foo.bar", null), "qux");
+		Assertions.assertEquals(contentsParser.getInt("foo.baz", 0), 2);
+		Assertions.assertFalse(contentsParser.getBoolean("qaz.bat", true));
+		Assertions.assertEquals(contentsParser.getString("foo.qux", "nonexistent"), "nonexistent");
+	}
 }
